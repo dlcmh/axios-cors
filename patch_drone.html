@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>axios-cors</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <strong>PATCH /drones/:id</strong>
+      <br>
+      <a href="./index.html">Home</a>
+    </div>
+    <div id="result"></div>
+    <script>
+      axios({
+        url: 'https://bonanza-dlc.herokuapp.com/api/drones/1',
+        // url: 'http://localhost:3000/api/drones/48',
+        method: 'patch',
+        headers: {
+          // 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MDAwOTA2MTcsInN1YiI6Nn0.D3Ky73hGTC0eR49g6SmdbrrHevbiIEi9V9brxNAcX8s'
+          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MDAwOTMwNjQsInN1YiI6MX0._r8u-UibOOD9VfFlqc2axDoEOVxuLIjq4Lh2UQjg5Is'
+        },
+        data: {
+          'drone': {
+            'manufacturer': 'Patched!'
+          }
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+        var status = document.createTextNode(response.status);
+        var result = document.createElement('p');
+        result.appendChild(status);
+        document.getElementById('result').appendChild(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    </script>
+  </body>
+</html>

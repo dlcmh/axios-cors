@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>POST user_token</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <a href="./index.html">Home</a>
+    </div>
+    <div id="result"></div>
+    <script>
+      axios({
+        url: 'https://bonanza-dlc.herokuapp.com/user_token',
+        // url: 'http://localhost:3000/user_token',
+        method: 'post',
+        data: {
+          auth: {
+            email: 'david.chin@surialabs.com',
+            password: '123456'
+          }
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+        var jwt = document.createTextNode(response.data.jwt);
+        var result = document.createElement('p');
+        result.appendChild(jwt);
+        document.getElementById('result').appendChild(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    </script>
+  </body>
+</html>
